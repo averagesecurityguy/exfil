@@ -3,6 +3,7 @@
 
 import argparse
 import importlib
+import sys
 
 #
 # Process our command line arguments.
@@ -31,6 +32,7 @@ try:
 
 except:
     print('Error: Module {0} was not found.'.format(args.module_name))
+    sys.exit(1)
 
 
 #
