@@ -12,6 +12,12 @@ Exfil is a tool designed to exfiltrate data using various techniques, which allo
 3. The sender then transmits the specified data to the listener while the tester attempts to see the data exfiltration using the monitoring system.
 
 
+Prerequisites
+-------------
+* `dnslib` - pip install dnslib
+* `dpkt` - Download the source code from [Google Code](https://code.google.com/p/dpkt/downloads/detail?name=dpkt-1.8.tar.gz). Once dowloaded extract the tar file and run `python setup.py install`
+
+
 Modules
 -------
 * `dns_lookup` - Transmit data using DNS lookups as described here http://breenmachine.blogspot.ca/2014/09/transfer-file-over-dns-in-windows-with.html
