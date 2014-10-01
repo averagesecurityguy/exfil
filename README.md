@@ -26,6 +26,7 @@ Modules
 
 Usage
 -----
+```
 usage: exfil.py [-h] (-d string | -f filename) (-l | -s server) [-p port] module_name
 
 Exfiltrate data.
@@ -41,7 +42,7 @@ optional arguments:
   -s server    Server where data should be sent. Can be a hostname
   or an IP address.
   -p port      Port to use when listening or connecting.
-
+```
 
 Examples
 --------
