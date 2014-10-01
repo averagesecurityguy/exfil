@@ -1,31 +1,30 @@
 # -*- coding: utf-8 -*-
-import socket
 import network
 
-BLOCK = 128
+BLOCK_SIZE = 256
 
 def listen(port):
     print('Listening for data via ICMP.')
-    
-    s = socket.socket(socket.AF_INET,socket.SOCK_RAW,socket.ntohs(0x0003))
-    s.bind(('0.0.0.0', 0))
+    l = network.get_listener('ICMP')
 
     print('Data Received:')
     while 1:
-        data, addr = s.recvfrom(1508)
-        print(data)
+        data, addr = l.recvfrom(1500)
+
+        # Drop the first 24 bytes because it is header data.
+        print network.decode_data(data[24:])
 
 
 def send(server, port, data):
     print('Sending data to {0} via ICMP.'.format(server))
-
-    s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
-    s.connect((server, 1))
+    s = network.get_sender('ICMP', server)
 
     print('Data Sent:')
-    for n in range(0, len(data), BLOCK):
-        chunk = data[n:n+BLOCK]
-        icmp = network.build_echo(chunk)
+    for n in range(0, len(data), BLOCK_SIZE):
+        block = data[n:n + BLOCK_SIZE]
+        print(block)
 
-        print repr(icmp)
+        enc = network.encode_data(block)
+        icmp = network.build_icmp_echo(data=enc)
+
         s.send(str(icmp))
