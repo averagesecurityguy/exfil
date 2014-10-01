@@ -18,7 +18,7 @@ transmit = p.add_mutually_exclusive_group(required=True)
 transmit.add_argument('-l', action='store_true', help='Listen for a connection.')
 transmit.add_argument('-s', metavar='server', help='Server where data should be sent. Can be a hostname or an IP address.')
 
-p.add_argument('-p', metavar='port', help='Port to use when listening or connecting.')
+p.add_argument('-p', metavar='port', type=int, help='Port to use when listening or connecting.')
 p.add_argument('module_name', help='Exfiltration module to use.')
 
 args = p.parse_args()
