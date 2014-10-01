@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import network
 
-BLOCK_SIZE = 256
+BLOCK_SIZE = 224
 PORT = 53
 
 def listen(port):
