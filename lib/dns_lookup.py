@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import network
 
-BLOCK_SIZE = 224
+# The max length of a DNS label is 253. Since we are base64 encoding our data
+# the longest block we can use is 185 bytes.
+BLOCK_SIZE = 185
 PORT = 53
 
 def listen(port):
