@@ -48,30 +48,3 @@ def get_sender(protocol, server):
         return s
 
     return None
-
-
-def build_icmp_echo(id=0, seq=0, data=''):
-    echo = dpkt.icmp.ICMP.Echo()
-    echo.id = id
-    echo.seq = seq
-    echo.data = data
-
-    icmp = dpkt.icmp.ICMP()
-    icmp.type = dpkt.icmp.ICMP_ECHO
-    icmp.data = str(data)
-
-    return icmp
-
-
-def parse_dns(data):
-    return dnslib.DNSRecord.parse(data)
-
-
-def send_dns_query(server, port, name):
-    q = dnslib.DNSRecord.question(name)
-
-    try:
-        q.send(server, port=port, timeout=1)
-
-    except socket.timeout:
-        pass

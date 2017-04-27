@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+import sys
 import network
-
-BLOCK_SIZE = 256
+import icmp
 
 def listen(port):
     print('Listening for data via ICMP.')
@@ -9,10 +9,9 @@ def listen(port):
 
     print('Data Received:')
     while 1:
-        data, addr = l.recvfrom(1500)
+        data, _ = icmp.receive(l)
 
-        # Drop the first 24 bytes because it is header data.
-        print network.decode_data(data[24:])
+        sys.stdout.write(data)
 
 
 def send(server, port, data):
@@ -20,11 +19,8 @@ def send(server, port, data):
     s = network.get_sender('ICMP', server)
 
     print('Data Sent:')
-    for n in range(0, len(data), BLOCK_SIZE):
-        block = data[n:n + BLOCK_SIZE]
-        print(block)
+    for n in range(0, len(data), icmp.BLOCK_SIZE):
+        block = data[n:n + icmp.BLOCK_SIZE]
+        icmp.send(s, block)
 
-        enc = network.encode_data(block)
-        icmp = network.build_icmp_echo(data=enc)
-
-        s.send(str(icmp))
+        sys.stdout.write(block)
